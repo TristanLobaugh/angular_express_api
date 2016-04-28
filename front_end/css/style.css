@@ -1,0 +1,31 @@
+/* line 1, ../compass/sass/_home.scss */
+body {
+  background-color: #d1d1e0;
+  padding-bottom: 70px;
+}
+
+/* line 5, ../compass/sass/_home.scss */
+#title {
+  text-align: center;
+}
+
+/* line 8, ../compass/sass/_home.scss */
+#question {
+  text-align: center;
+}
+
+/* line 11, ../compass/sass/_home.scss */
+img {
+  width: 100%;
+}
+
+/* line 14, ../compass/sass/_home.scss */
+#voting-form {
+  text-align: center;
+}
+
+/* line 17, ../compass/sass/_home.scss */
+.btn {
+  margin: 25px;
+  width: 100px;
+}

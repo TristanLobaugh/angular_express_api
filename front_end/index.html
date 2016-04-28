@@ -3,6 +3,7 @@
 <head>
 	<title></title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
 	<script type="text/javascript" src="controller.js"></script>
@@ -10,15 +11,71 @@
 <body ng-controller="searchController">
 
 	<div class="container">
-		<div class="row">
+		<h1 id="title" class="col-md-12">Landmarks of the USA</h1>
+		<div id="landmark-wrapper" class="col-md-6 col-md-offset-3">
+			<img id="landmark-image" ng-src="img/{{image}}" default="LANDMARK IMAGE">
+			<h3 id="question">Is this landmark located in the United States?</h3>
+			
+				<input type="button" class="btn btn-success" ng-click="vote(1)" value="Yes">
+				<input type="button" class="btn btn-danger" ng-click="vote(0)" value="No">
+			
+		</div>
+	</div>
+
+	<nav class="navbar navbar-inverse navbar-fixed-bottom">
+  		<div class="container-fluid">
+			<ul class="nav navbar-nav">
+				<li>
+					<a class="" href="#">
+						<span class="glyphicon glyphicon-ok"></span>
+						 Vote!
+					</a>
+				</li>
+				<li>
+					<a class="" href="#">
+						<span class="glyphicon glyphicon-signal"></span>
+						 Standings
+					</a>
+				</li>
+				<li>
+					<a class="" href="#">
+						<span class="glyphicon glyphicon-plus"></span>
+						 Add Pic
+					</a>
+				</li>
+				<li>
+					<a class="" href="#">
+						<span class="glyphicon glyphicon-user"></span>
+						 Reset Votes For User 
+					</a>
+				</li>
+				<li>
+					<a class="" href="#">
+						<span class="glyphicon glyphicon-remove"></span>
+						 Reset Votes For all Images
+					</a>
+				</li>
+			</ul>
+ 		</div>
+	</nav>
+
+	
+
+<!-- 		<div class="row">
 			<form class="search-form" ng-submit="search()">
-				<input type="text">
+				<input type="text" ng-model="who">
 				<input type="submit" class="btn btn-primary">
 			</form>
 		</div>
 	</div>
 
-	{{message}}
+	<div class="">{{who}}</div>
+	<div class="">{{message}}</div>
+	<div class="status">Status: {{status}}</div>
+	<div class="result">{{result}}</div>
+	<div class="data">Message: {{data}}</div>
+	<h1>Students in Database:</h1>
+	<li ng-repeat="name in studentsOnLoad">{{name.name}}</li> -->
 
 </body>
 </html>
