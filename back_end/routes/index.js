@@ -3,19 +3,57 @@ var router = express.Router();
 var MongoClient = require("mongodb").MongoClient;
 var mongoUrl = "mongodb://localhost:27017/landmarks";
 
+var multer = require("multer");
+var fs = require("fs");
+var upload = multer({dest: "uploads/"});
+var type = upload.single("uploadedImg");
 var db;
 
 MongoClient.connect(mongoUrl, function(error, database){
 	db = database;
 });
 
-router.get('/get_image', function(req, res, next) {
-	db.collection("landmark").find().toArray(function(error, queryResult){
-		res.json(queryResult);
+router.post("/uploads", type, function(req, res, next){
+  var target_path = "../front-end/img/" + req.file.originalname;
+  fs.readFile(req.file.path, function(error, imgData){
+    fs.writeFile(target_path, imgData, function(error){
+      if(error){
+        res.json("ERROR!!! There was an error: " + error);
+      }else{
+        res.json("success");
+        //INSERT db.collection("landmark").indertOne()  yada yada yada
+      }
+    });
+  });
+});
+
+router.get("/get_image", function(req, res, next) {
+  var currIP = req.ip;
+	db.collection("users").find({ip: currIP}).toArray(function(error, userResult){
+    var landmarksVotedOn = [];
+    for(var i = 0; i < userResult.length; i++){
+      landmarksVotedOn.push(userResult[i].image);
+    }
+    console.log(landmarksVotedOn);
+    db.collection("landmark").find({imgSrc: {$nin: landmarksVotedOn}}).toArray(function(error, imagesToShow){
+      if(imagesToShow.length === 0){
+        res.redirect("/standings");
+      }else{
+        var randomNum = Math.floor(Math.random() * imagesToShow.length);
+        res.json("index", {landmarkImage: imagesToShow[randomNum].imgSrc});
+      }
+    });
 	});
 });
 
 router.post('/voted', function(req, res, next) {
+  // console.log(req);
+  db.collection("users").insertOne({
+    ip: req.ip,
+    vote: "voted",
+    image: req.body.image
+  });
+
   var guess = req.body.votes;
   db.collection("landmark").find({imgSrc: req.body.image}).toArray(function(error, dbResult){
   	if(dbResult[0].inusa === guess){
@@ -35,24 +73,8 @@ router.post('/voted', function(req, res, next) {
   		});
   		
   		res.json(message);
-
   });
 });
 
-
-//   var dcClass = [
-//   	"Tristan",
-//   	"Josh",
-//   	"Bogdan",
-//   	"Will",
-//   	"Kieth"
-//   ];
-
-//   if(dcClass.indexOf(name) > -1){
-//   	res.json({message: "Hello, " + name + " student in class."});
-//   }else{
-//   res.json({message: "You are not in the class."});
-// 	}
-// });
 
 module.exports = router;

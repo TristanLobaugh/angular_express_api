@@ -17,14 +17,15 @@ body {
 /* line 11, ../compass/sass/_home.scss */
 img {
   width: 100%;
+  max-height: 390px;
 }
 
-/* line 14, ../compass/sass/_home.scss */
+/* line 15, ../compass/sass/_home.scss */
 #voting-form {
   text-align: center;
 }
 
-/* line 17, ../compass/sass/_home.scss */
+/* line 18, ../compass/sass/_home.scss */
 .btn {
   margin: 25px;
   width: 100px;
