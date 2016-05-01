@@ -52,8 +52,11 @@ voteApp.controller("standingsController", function($scope, $http){
 	function getAllImages(){
 		var apiUrl = "http://localhost:3030/get_all_images";
 		$http.get(apiUrl).then(function successCallback(response){
-			$scope.allImages = response.data;
-			console.log($scope.allImages);
+			var allImagesArray = response.data;
+			allImagesArray.sort(function(a, b){
+				return b.totalVotes - a.totalVotes;
+			});
+			$scope.allImages = allImagesArray;
 		}, function errorCallback(response){
 			console.log("ERROR");
 		  	$scope.result = "ERROR!!! " + response.status;
