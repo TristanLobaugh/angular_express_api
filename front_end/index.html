@@ -1,26 +1,17 @@
 <!DOCTYPE html>
-<html ng-app="searchApp">
+<html ng-app="voteApp">
 <head>
 	<title></title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-	<script type="text/javascript" src="controller.js"></script>
+	<script type="text/javascript" src="js/angular-route.min.js"></script>
+	<script type="text/javascript" src="js/controller.js"></script>
 </head>
-<body ng-controller="searchController">
+<body ng-controller="voteController">
 
-	<div class="container">
-		<h1 id="title" class="col-md-12">Landmarks of the USA</h1>
-		<div id="landmark-wrapper" class="col-md-6 col-md-offset-3">
-			<img id="landmark-image" ng-src="img/{{image}}" default="LANDMARK IMAGE">
-			<h3 id="question">Is this landmark located in the United States?</h3>
-			<div id="voting-form">
-				<input type="button" class="btn btn-success" ng-click="vote(1)" value="Yes">
-				<input type="button" class="btn btn-danger" ng-click="vote(0)" value="No">
-			</div>
-		</div>
-	</div>
+	<div ng-view></div>
 
 	<nav class="navbar navbar-inverse navbar-fixed-bottom">
   		<div class="container-fluid">

@@ -1,0 +1,12 @@
+<div class="container">
+	<h1>All Landmarks Voted on</h1>
+	<div class="landmarks-wrapper col-md-12">
+		<div ng-repeat="landmarks in allImages track by $index" class="col-md-3">
+			<div class="image-wrapper col-md-12"><img ng-src="img/{{landmarks.imgSrc}}"></div>
+			<div class="name-wrapper col-md-12">{{landmarks.name}}</div>
+			<div class="name-wrapper col-md-12">Total Votes:{{landmarks.totalVotes}}</div>
+			<div class="name-wrapper col-md-12">Votes Correct:{{landmarks.voteCorrect}}</div>
+			<div class="name-wrapper col-md-12">Total Incorrect:{{landmarks.voteWrong}}</div>
+		</div>
+	</div>
+</div>

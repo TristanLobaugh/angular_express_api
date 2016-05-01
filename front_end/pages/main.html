@@ -1,0 +1,11 @@
+<div class="container">
+	<h1 id="title" class="col-md-12">Landmarks of the USA</h1>
+	<div id="landmark-wrapper" class="col-md-6 col-md-offset-3">
+		<img id="landmark-image" ng-src="img/{{image}}" default="LANDMARK IMAGE">
+		<h3 id="question">Is this landmark located in the United States?</h3>
+		<div id="voting-form">
+			<input type="button" class="btn btn-success" ng-click="vote(1)" value="Yes">
+			<input type="button" class="btn btn-danger" ng-click="vote(0)" value="No">
+		</div>
+	</div>
+</div>

@@ -34,16 +34,24 @@ router.get("/get_image", function(req, res, next) {
     for(var i = 0; i < userResult.length; i++){
       landmarksVotedOn.push(userResult[i].image);
     }
-    console.log(landmarksVotedOn);
     db.collection("landmark").find({imgSrc: {$nin: landmarksVotedOn}}).toArray(function(error, imagesToShow){
       if(imagesToShow.length === 0){
-        res.redirect("/standings");
+        console.log("************ZERO LEFT***********");
+        res.json("index", {changeTo: "/standings"});
       }else{
         var randomNum = Math.floor(Math.random() * imagesToShow.length);
         res.json("index", {landmarkImage: imagesToShow[randomNum].imgSrc});
       }
     });
 	});
+});
+
+router.get("/get_all_images", function(req, res, next){
+  console.log("**Getting All Images**");
+  db.collection("landmark").find().toArray(function(error, allImages){
+    console.log(allImages);
+    res.json(allImages);
+  });
 });
 
 router.post('/voted', function(req, res, next) {
@@ -70,8 +78,7 @@ router.post('/voted', function(req, res, next) {
   		{
   			$inc: {"totalVotes": 1},
   			$set: {"voteCorrect": correct, "voteWrong": incorrect}
-  		});
-  		
+  		});	
   		res.json(message);
   });
 });
