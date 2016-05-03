@@ -11,6 +11,7 @@ var db;
 
 MongoClient.connect(mongoUrl, function(error, database){
 	db = database;
+  console.log(db);
 });
 
 router.post("/uploads", type, function(req, res, next){
