@@ -12,7 +12,7 @@
 
 ## Demo
 
-[Live Demo](http://tristanlobaugh.com/Landmarks/front-end)
+[Live Demo](http://tristanlobaugh.com/Landmarks/front_end)
 
 ## Screenshots
 
