@@ -10,6 +10,15 @@
 + Github - https://github.com/TristanLobaugh
 + Homepage - http://tristanlobaugh.com
 
+## Demo
+
+[Live Demo](http://tristanlobaugh.com/Landmarks)
+
+## Screenshots
+
+### Main page:
+![alt text](https://raw.githubusercontent.com/TristanLobaugh/angular_express_api/master/front_end/img/screen_shot.png)
+
 ##Code Examples
 
 ### Backend router.get that makes a query to the database for images that haven't been voted on yet
@@ -23,7 +32,6 @@ router.get("/get_image", function(req, res, next) {
     }
     db.collection("landmark").find({imgSrc: {$nin: landmarksVotedOn}}).toArray(function(error, imagesToShow){
       if(imagesToShow.length === 0){
-        console.log("************ZERO LEFT***********");
         res.json("index", {changeTo: "/standings"});
       }else{
         var randomNum = Math.floor(Math.random() * imagesToShow.length);
@@ -55,4 +63,3 @@ voteApp.controller("standingsController", function($scope, $http){
 ```
 
 ## To Do
-Add demo and screenshots
