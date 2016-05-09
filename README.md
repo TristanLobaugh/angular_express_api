@@ -17,7 +17,7 @@
 ## Screenshots
 
 ### Standings page:
-![alt text](https://raw.githubusercontent.com/TristanLobaugh/angualr_express_api/master/front_end/img/screen_shot.png)
+![alt text](https://raw.githubusercontent.com/TristanLobaugh/angular_express_api/master/front_end/img/screen_shot.png)
 
 ##Code Examples
 
