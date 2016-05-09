@@ -16,10 +16,10 @@ voteApp.config(function($routeProvider){
 
 voteApp.controller("voteController", function($scope, $http, $location){
 	getImage();
-	var apiUrl = "http://localhost:3030/voted";
+	var myUrl = "http://tristanlobaugh.com:3030/";
 
 	$scope.vote = function(val){
-		var apiUrl = "http://localhost:3030/voted";
+		var apiUrl = myUrl + "voted";
 		$http.post(apiUrl, {"votes": val, image: $scope.image})
 		.then(function successCallback(response){
 		$scope.data = response.data;
@@ -31,7 +31,7 @@ voteApp.controller("voteController", function($scope, $http, $location){
 	}
 
 	function getImage(){
-		var apiUrl = "http://localhost:3030/get_image";
+		var apiUrl = myUrl + "get_image";
 		$http.get(apiUrl)
 		.then(function successCallback(response){
 			if(response.data.changeTo === "/standings"){
@@ -50,7 +50,7 @@ voteApp.controller("standingsController", function($scope, $http){
 	getAllImages();
 
 	function getAllImages(){
-		var apiUrl = "http://localhost:3030/get_all_images";
+		var apiUrl = myUrl + "get_all_images";
 		$http.get(apiUrl).then(function successCallback(response){
 			var allImagesArray = response.data;
 			allImagesArray.sort(function(a, b){
