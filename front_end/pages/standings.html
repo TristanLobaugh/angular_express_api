@@ -4,9 +4,27 @@
 		<div ng-repeat="landmarks in allImages track by $index" class="col-md-3">
 			<div class="image-wrapper col-md-12"><img ng-src="img/{{landmarks.imgSrc}}"></div>
 			<div class="name-wrapper col-md-12">{{landmarks.name}}</div>
-			<div class="name-wrapper col-md-12">Total Votes: {{landmarks.totalVotes}}</div>
-			<div class="name-wrapper col-md-12">Votes Correct: {{landmarks.voteCorrect}} Percent: {{(landmarks.voteCorrect / landmarks.totalVotes) * 100}}%</div>
-			<div class="name-wrapper col-md-12">Votes Incorrect: {{landmarks.voteWrong}} Percent: {{(landmarks.voteWrong / landmarks.totalVotes) * 100}}%</div>
+			<div class="col-md-12">
+				<div class="name-wrapper col-md-12">Total Votes: {{landmarks.totalVotes}}</div>
+			</div>
+			<div class="col-md-12">
+				<div class="name-wrapper col-md-12">Votes Correct: {{landmarks.voteCorrect}}</div>
+				<div class="col-md-12">Percent: {{((landmarks.voteCorrect / landmarks.totalVotes) * 100)| number:0}}%</div>
+			</div>
+			<div class="col-md-12">
+				<div class="name-wrapper col-md-12">Votes Incorrect: {{landmarks.voteWrong}}</div> 
+				<div class="col-md-12">Percent: {{((landmarks.voteWrong / landmarks.totalVotes) * 100)| number:0}}%</div>
+
+				<div class="progress col-md-12">
+  					<div class="prog progress-bar" role="progressbar" aria-valuenow="{{((landmarks.voteWrong / landmarks.totalVotes) * 100)| number:0}}" aria-valuemin="0" aria-valuemax="100" style="width : {{((landmarks.voteWrong / landmarks.totalVotes) * 100)| number:0}}%">{{((landmarks.voteWrong / landmarks.totalVotes) * 100)| number:0}}%</div>
+  				</div>
+			</div>
 		</div>
 	</div>
 </div>
+
+
+
+<!-- <div ng-class="apt.name.length >= 15 ? 'col-md-12' : (apt.name.length >= 10 ? 'col-md-6' : 'col-md-4')">
+    ...
+</div> -->

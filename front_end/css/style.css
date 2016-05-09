@@ -30,3 +30,8 @@ img {
   margin: 25px;
   width: 100px;
 }
+
+/* line 22, ../compass/sass/_home.scss */
+.prog {
+  text-align: center;
+}
