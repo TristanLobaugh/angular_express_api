@@ -19,9 +19,11 @@ router.post("/uploads", type, function(req, res, next){
   fs.readFile(req.file.path, function(error, imgData){
     fs.writeFile(target_path, imgData, function(error){
       if(error){
-        res.json("ERROR!!! There was an error: " + error);
+        // res.json("ERROR!!! There was an error: " + error);
+        res.status(500).json("ERROR!!! There was an error: " + error);
       }else{
-        res.json("success");
+        // res.json("success");
+        res.status(200).json("success");
         //INSERT db.collection("landmark").indertOne()  yada yada yada
       }
     });
@@ -38,10 +40,12 @@ router.get("/get_image", function(req, res, next) {
     db.collection("landmark").find({imgSrc: {$nin: landmarksVotedOn}}).toArray(function(error, imagesToShow){
       if(imagesToShow.length === 0){
         console.log("************ZERO LEFT***********");
-        res.json("index", {changeTo: "/standings"});
+        // res.json("index", {changeTo: "/standings"});
+        res.status(200).json("index", {changeTo: "/standings"});
       }else{
         var randomNum = Math.floor(Math.random() * imagesToShow.length);
-        res.json("index", {landmarkImage: imagesToShow[randomNum].imgSrc});
+        // res.json("index", {landmarkImage: imagesToShow[randomNum].imgSrc});
+        res.status(200).json("index", {landmarkImage: imagesToShow[randomNum].imgSrc});
       }
     });
 	});
@@ -51,7 +55,8 @@ router.get("/get_all_images", function(req, res, next){
   console.log("**Getting All Images**");
   db.collection("landmark").find().toArray(function(error, allImages){
     console.log(allImages);
-    res.json(allImages);
+    // res.json(allImages);
+    res.status(200).json(allImages);
   });
 });
 
@@ -80,7 +85,8 @@ router.post('/voted', function(req, res, next) {
   			$inc: {"totalVotes": 1},
   			$set: {"voteCorrect": correct, "voteWrong": incorrect}
   		});	
-  		res.json(message);
+  		// res.json(message);
+      res.status(200).json(message);
   });
 });
 
