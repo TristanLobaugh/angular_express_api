@@ -41,11 +41,11 @@ router.get("/get_image", function(req, res, next) {
       if(imagesToShow.length === 0){
         console.log("************ZERO LEFT***********");
         // res.json("index", {changeTo: "/standings"});
-        res.status(200).json("index", {changeTo: "/standings"});
+        res.status(200).json({changeTo: "/standings"});
       }else{
         var randomNum = Math.floor(Math.random() * imagesToShow.length);
         // res.json("index", {landmarkImage: imagesToShow[randomNum].imgSrc});
-        res.status(200).json("index", {landmarkImage: imagesToShow[randomNum].imgSrc});
+        res.status(200).json({landmarkImage: imagesToShow[randomNum].imgSrc});
       }
     });
 	});
